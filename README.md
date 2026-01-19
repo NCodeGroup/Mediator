@@ -1,3 +1,6 @@
+[![ci](https://github.com/NCodeGroup/Mediator/actions/workflows/main.yml/badge.svg)](https://github.com/NCodeGroup/Mediator/actions)
+[![NuGet](https://img.shields.io/nuget/v/NCode.Mediator.svg)](https://www.nuget.org/packages/NCode.Mediator/)
+
 # NCode.Mediator
 
 A lightweight, high-performance mediator library for .NET that implements the mediator pattern with support for commands, queries, middleware pipelines, and comprehensive exception handling.
