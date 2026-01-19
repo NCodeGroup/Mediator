@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+
+  <PropertyGroup>
+    <Description>A lightweight, high-performance mediator library for .NET that implements the mediator pattern with support for command dispatching, middleware pipelines, pre/post processors, and comprehensive exception handling. Features include priority-based execution ordering, both AOT-compatible generic dispatch and runtime polymorphic dispatch, and seamless integration with Microsoft.Extensions.DependencyInjection.</Description>
+    <PackageTags>mediator;cqrs;command;handler;middleware;pipeline;dispatcher;dependency-injection;dotnet;async</PackageTags>
+  </PropertyGroup>
+
+</Project>

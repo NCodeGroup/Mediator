@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+
+  <PropertyGroup>
+    <Description>Core abstractions and interfaces for NCode.Mediator, providing the contracts for commands, handlers, middleware, pre/post processors, exception handlers, and exception listeners. This package contains only interfaces with no implementation dependencies, making it ideal for defining handlers in separate assemblies.</Description>
+    <PackageTags>mediator;cqrs;command;handler;middleware;abstractions;interfaces;dotnet</PackageTags>
+  </PropertyGroup>
+
+</Project>
