@@ -60,5 +60,7 @@ override in `AGENTS.md`.
 
 ## Index
 
+NCode.Mediator has no decision records of its own yet; the first one is numbered 1000.
+
 | ADR | Decision | Status |
 | --- | --- | --- |

@@ -256,7 +256,7 @@ public class CommandResponseHandlerWrapperTests
             .Setup(x => x.HandleAsync(It.IsAny<TestCommand>(), It.IsAny<CommandResponseMiddlewareDelegate<string>>(), It.IsAny<CancellationToken>()))
             .Callback<TestCommand, CommandResponseMiddlewareDelegate<string>, CancellationToken>(
                 (cmd, _, _) => receivedCommand = cmd)
-            .Returns(() => ValueTask.FromResult("result"))
+            .ReturnsAsync("result")
             .Verifiable();
 
         var factory = CommandResponseHandlerWrapper<TestCommand, string>.WrapMiddleware(mockMiddleware.Object);
@@ -281,7 +281,7 @@ public class CommandResponseHandlerWrapperTests
             .Setup(x => x.HandleAsync(It.IsAny<TestCommand>(), It.IsAny<CommandResponseMiddlewareDelegate<string>>(), It.IsAny<CancellationToken>()))
             .Callback<TestCommand, CommandResponseMiddlewareDelegate<string>, CancellationToken>(
                 (_, _, token) => receivedToken = token)
-            .Returns(() => ValueTask.FromResult("result"))
+            .ReturnsAsync("result")
             .Verifiable();
 
         var factory = CommandResponseHandlerWrapper<TestCommand, string>.WrapMiddleware(mockMiddleware.Object);
