@@ -1,0 +1,48 @@
+#nullable enable
+NCode.Mediator.DefaultMediatorPriorities
+NCode.Mediator.ICommand
+NCode.Mediator.ICommand<TResponse>
+NCode.Mediator.ICommandHandler<TCommand>
+NCode.Mediator.ICommandHandler<TCommand>.HandleAsync(TCommand command, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.ValueTask
+NCode.Mediator.ICommandResponseHandler<TCommand, TResponse>
+NCode.Mediator.ICommandResponseHandler<TCommand, TResponse>.HandleAsync(TCommand command, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.ValueTask<TResponse>
+NCode.Mediator.IMediator
+NCode.Mediator.IMediator.PolymorphicSendAsync(NCode.Mediator.ICommand! command, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.ValueTask
+NCode.Mediator.IMediator.PolymorphicSendAsync<TResponse>(NCode.Mediator.ICommand<TResponse>! command, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.ValueTask<TResponse>
+NCode.Mediator.IMediator.SendAsync<TCommand, TResponse>(TCommand command, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.ValueTask<TResponse>
+NCode.Mediator.IMediator.SendAsync<TCommand>(TCommand command, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.ValueTask
+NCode.Mediator.ISupportMediatorPriority
+NCode.Mediator.ISupportMediatorPriority.MediatorPriority.get -> int
+NCode.Mediator.Middleware.CommandExceptionHandlerState
+NCode.Mediator.Middleware.CommandExceptionHandlerState.CommandExceptionHandlerState() -> void
+NCode.Mediator.Middleware.CommandExceptionHandlerState.IsHandled.get -> bool
+NCode.Mediator.Middleware.CommandExceptionHandlerState.SetHandled() -> void
+NCode.Mediator.Middleware.CommandMiddlewareDelegate
+NCode.Mediator.Middleware.CommandResponseExceptionHandlerState<TResponse>
+NCode.Mediator.Middleware.CommandResponseExceptionHandlerState<TResponse>.CommandResponseExceptionHandlerState() -> void
+NCode.Mediator.Middleware.CommandResponseExceptionHandlerState<TResponse>.IsHandled.get -> bool
+NCode.Mediator.Middleware.CommandResponseExceptionHandlerState<TResponse>.Response.get -> TResponse?
+NCode.Mediator.Middleware.CommandResponseExceptionHandlerState<TResponse>.SetHandled(TResponse response) -> void
+NCode.Mediator.Middleware.CommandResponseMiddlewareDelegate<TResponse>
+NCode.Mediator.Middleware.ICommandExceptionHandler<TCommand, TException>
+NCode.Mediator.Middleware.ICommandExceptionHandler<TCommand, TException>.HandleAsync(TCommand command, TException! exception, NCode.Mediator.Middleware.CommandExceptionHandlerState! state, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.ValueTask
+NCode.Mediator.Middleware.ICommandExceptionListener<TCommand, TException>
+NCode.Mediator.Middleware.ICommandExceptionListener<TCommand, TException>.ListenAsync(TCommand command, TException! exception, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.ValueTask
+NCode.Mediator.Middleware.ICommandMiddleware<TCommand>
+NCode.Mediator.Middleware.ICommandMiddleware<TCommand>.HandleAsync(TCommand command, NCode.Mediator.Middleware.CommandMiddlewareDelegate! next, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.ValueTask
+NCode.Mediator.Middleware.ICommandPostProcessor<TCommand>
+NCode.Mediator.Middleware.ICommandPostProcessor<TCommand>.PostProcessAsync(TCommand command, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.ValueTask
+NCode.Mediator.Middleware.ICommandPreProcessor<TCommand>
+NCode.Mediator.Middleware.ICommandPreProcessor<TCommand>.PreProcessAsync(TCommand command, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.ValueTask
+NCode.Mediator.Middleware.ICommandResponseExceptionHandler<TCommand, TException, TResponse>
+NCode.Mediator.Middleware.ICommandResponseExceptionHandler<TCommand, TException, TResponse>.HandleAsync(TCommand command, TException! exception, NCode.Mediator.Middleware.CommandResponseExceptionHandlerState<TResponse>! state, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.ValueTask
+NCode.Mediator.Middleware.ICommandResponseMiddleware<TCommand, TResponse>
+NCode.Mediator.Middleware.ICommandResponseMiddleware<TCommand, TResponse>.HandleAsync(TCommand command, NCode.Mediator.Middleware.CommandResponseMiddlewareDelegate<TResponse>! next, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.ValueTask<TResponse>
+NCode.Mediator.Middleware.ICommandResponsePostProcessor<TCommand, TResponse>
+NCode.Mediator.Middleware.ICommandResponsePostProcessor<TCommand, TResponse>.PostProcessAsync(TCommand command, TResponse response, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.ValueTask
+static NCode.Mediator.DefaultMediatorPriorities.High.get -> int
+static NCode.Mediator.DefaultMediatorPriorities.High.set -> void
+static NCode.Mediator.DefaultMediatorPriorities.Low.get -> int
+static NCode.Mediator.DefaultMediatorPriorities.Low.set -> void
+virtual NCode.Mediator.Middleware.CommandMiddlewareDelegate.Invoke() -> System.Threading.Tasks.ValueTask
+virtual NCode.Mediator.Middleware.CommandResponseMiddlewareDelegate<TResponse>.Invoke() -> System.Threading.Tasks.ValueTask<TResponse>

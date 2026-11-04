@@ -33,18 +33,18 @@ public class StandardCommandMiddlewareTests
         public string? Value { get; init; }
     }
 
-    private class NonPrioritizedItem
+    private sealed class NonPrioritizedItem
     {
         public int Id { get; init; }
     }
 
-    private class PrioritizedItem : ISupportMediatorPriority
+    private sealed class PrioritizedItem : ISupportMediatorPriority
     {
         public int Id { get; init; }
         public int MediatorPriority { get; init; }
     }
 
-    private class TrackingPreProcessor(List<int> executionOrder, int processorId)
+    private sealed class TrackingPreProcessor(List<int> executionOrder, int processorId)
         : ICommandPreProcessor<TestCommand>, ISupportMediatorPriority
     {
         public int MediatorPriority { get; init; }
@@ -56,7 +56,7 @@ public class StandardCommandMiddlewareTests
         }
     }
 
-    private class TrackingPostProcessor(List<int> executionOrder, int processorId)
+    private sealed class TrackingPostProcessor(List<int> executionOrder, int processorId)
         : ICommandPostProcessor<TestCommand>, ISupportMediatorPriority
     {
         public int MediatorPriority { get; init; }
@@ -68,7 +68,7 @@ public class StandardCommandMiddlewareTests
         }
     }
 
-    private class ThrowingPreProcessor(Exception exception) : ICommandPreProcessor<TestCommand>
+    private sealed class ThrowingPreProcessor(Exception exception) : ICommandPreProcessor<TestCommand>
     {
         public ValueTask PreProcessAsync(TestCommand command, CancellationToken cancellationToken)
         {
@@ -76,7 +76,7 @@ public class StandardCommandMiddlewareTests
         }
     }
 
-    private class ThrowingPostProcessor(Exception exception) : ICommandPostProcessor<TestCommand>
+    private sealed class ThrowingPostProcessor(Exception exception) : ICommandPostProcessor<TestCommand>
     {
         public ValueTask PostProcessAsync(TestCommand command, CancellationToken cancellationToken)
         {

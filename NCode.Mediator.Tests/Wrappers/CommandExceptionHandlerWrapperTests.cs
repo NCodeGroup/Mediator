@@ -32,7 +32,7 @@ public class CommandExceptionHandlerWrapperTests
         public string? Value { get; init; }
     }
 
-    private class PrioritizedExceptionHandler
+    private sealed class PrioritizedExceptionHandler
         : ICommandExceptionHandler<TestCommand, InvalidOperationException>, ISupportMediatorPriority
     {
         public int MediatorPriority { get; init; }
@@ -55,12 +55,12 @@ public class CommandExceptionHandlerWrapperTests
         }
     }
 
-    private class NonPrioritizedItem
+    private sealed class NonPrioritizedItem
     {
         public int Id { get; init; }
     }
 
-    private class PrioritizedItem : ISupportMediatorPriority
+    private sealed class PrioritizedItem : ISupportMediatorPriority
     {
         public int Id { get; init; }
         public int MediatorPriority { get; init; }
@@ -579,7 +579,7 @@ public class CommandExceptionHandlerWrapperTests
         Assert.Equal(1, executionOrder[3]);
     }
 
-    private class TrackingExceptionHandler(List<int> executionOrder, int handlerId)
+    private sealed class TrackingExceptionHandler(List<int> executionOrder, int handlerId)
         : ICommandExceptionHandler<TestCommand, InvalidOperationException>, ISupportMediatorPriority
     {
         public int MediatorPriority { get; init; }

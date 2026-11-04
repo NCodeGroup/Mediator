@@ -1,0 +1,11 @@
+#nullable enable
+NCode.Mediator.DefaultMediator
+NCode.Mediator.DefaultMediator.DefaultMediator(System.IServiceProvider! serviceProvider) -> void
+NCode.Mediator.DefaultMediator.PolymorphicSendAsync(NCode.Mediator.ICommand! command, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.ValueTask
+NCode.Mediator.DefaultMediator.PolymorphicSendAsync<TResponse>(NCode.Mediator.ICommand<TResponse>! command, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.ValueTask<TResponse>
+NCode.Mediator.DefaultMediator.SendAsync<TCommand, TResponse>(TCommand command, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.ValueTask<TResponse>
+NCode.Mediator.DefaultMediator.SendAsync<TCommand>(TCommand command, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.ValueTask
+NCode.Mediator.DefaultRegistration
+NCode.Mediator.DefaultRegistration.extension(Microsoft.Extensions.DependencyInjection.IServiceCollection!)
+NCode.Mediator.DefaultRegistration.extension(Microsoft.Extensions.DependencyInjection.IServiceCollection!).AddMediator() -> Microsoft.Extensions.DependencyInjection.IServiceCollection!
+static NCode.Mediator.DefaultRegistration.AddMediator(this Microsoft.Extensions.DependencyInjection.IServiceCollection! serviceCollection) -> Microsoft.Extensions.DependencyInjection.IServiceCollection!

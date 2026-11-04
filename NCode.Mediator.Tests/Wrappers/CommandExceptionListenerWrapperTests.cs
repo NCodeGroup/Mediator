@@ -32,7 +32,7 @@ public class CommandExceptionListenerWrapperTests
         public string? Value { get; init; }
     }
 
-    private class PrioritizedExceptionListener
+    private sealed class PrioritizedExceptionListener
         : ICommandExceptionListener<TestCommand, InvalidOperationException>, ISupportMediatorPriority
     {
         public int MediatorPriority { get; init; }
@@ -48,12 +48,12 @@ public class CommandExceptionListenerWrapperTests
         }
     }
 
-    private class NonPrioritizedItem
+    private sealed class NonPrioritizedItem
     {
         public int Id { get; init; }
     }
 
-    private class PrioritizedItem : ISupportMediatorPriority
+    private sealed class PrioritizedItem : ISupportMediatorPriority
     {
         public int Id { get; init; }
         public int MediatorPriority { get; init; }
@@ -486,7 +486,7 @@ public class CommandExceptionListenerWrapperTests
         Assert.Equal(1, executionOrder[3]);
     }
 
-    private class TrackingExceptionListener(List<int> executionOrder, int listenerId)
+    private sealed class TrackingExceptionListener(List<int> executionOrder, int listenerId)
         : ICommandExceptionListener<TestCommand, InvalidOperationException>, ISupportMediatorPriority
     {
         public int MediatorPriority { get; init; }
