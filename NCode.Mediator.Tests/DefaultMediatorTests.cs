@@ -51,7 +51,7 @@ public class DefaultMediatorTests
 
     #region Test Handlers
 
-    private class TestCommandHandler : ICommandHandler<TestCommand>
+    private sealed class TestCommandHandler : ICommandHandler<TestCommand>
     {
         public List<TestCommand> ReceivedCommands { get; } = [];
         public CancellationToken ReceivedCancellationToken { get; private set; }
@@ -64,7 +64,7 @@ public class DefaultMediatorTests
         }
     }
 
-    private class TestCommandWithResponseHandler : ICommandResponseHandler<TestCommandWithResponse, string>
+    private sealed class TestCommandWithResponseHandler : ICommandResponseHandler<TestCommandWithResponse, string>
     {
         public List<TestCommandWithResponse> ReceivedCommands { get; } = [];
         public CancellationToken ReceivedCancellationToken { get; private set; }
@@ -78,7 +78,7 @@ public class DefaultMediatorTests
         }
     }
 
-    private class AnotherTestCommandHandler : ICommandHandler<AnotherTestCommand>
+    private sealed class AnotherTestCommandHandler : ICommandHandler<AnotherTestCommand>
     {
         public List<AnotherTestCommand> ReceivedCommands { get; } = [];
 
@@ -89,7 +89,7 @@ public class DefaultMediatorTests
         }
     }
 
-    private class AnotherTestCommandWithResponseHandler : ICommandResponseHandler<AnotherTestCommandWithResponse, int>
+    private sealed class AnotherTestCommandWithResponseHandler : ICommandResponseHandler<AnotherTestCommandWithResponse, int>
     {
         public List<AnotherTestCommandWithResponse> ReceivedCommands { get; } = [];
 

@@ -181,6 +181,14 @@ public class HighPriorityMiddleware : ICommandMiddleware<MyCommand>, ISupportMed
 }
 ```
 
+## Project
+
+- [CONTRIBUTING.md](CONTRIBUTING.md): how to set up, build, test and propose a change.
+- [SECURITY.md](SECURITY.md): how to report a vulnerability privately.
+- [docs/decisions/](docs/decisions/README.md): the decisions behind the design, the project's and the template's.
+- [CHANGELOG.md](CHANGELOG.md): what changed in each release.
+- [LICENSE.txt](LICENSE.txt): the license.
+
 ## License
 
 Licensed under the Apache License, Version 2.0. See [LICENSE.txt](LICENSE.txt) for details.

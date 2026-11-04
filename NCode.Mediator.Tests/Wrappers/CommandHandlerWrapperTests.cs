@@ -32,7 +32,7 @@ public class CommandHandlerWrapperTests
         public string? Value { get; init; }
     }
 
-    private class PrioritizedHandler : ICommandHandler<TestCommand>, ISupportMediatorPriority
+    private sealed class PrioritizedHandler : ICommandHandler<TestCommand>, ISupportMediatorPriority
     {
         public int MediatorPriority { get; init; }
         public List<TestCommand> ReceivedCommands { get; } = [];
@@ -44,7 +44,7 @@ public class CommandHandlerWrapperTests
         }
     }
 
-    private class PrioritizedMiddleware : ICommandMiddleware<TestCommand>, ISupportMediatorPriority
+    private sealed class PrioritizedMiddleware : ICommandMiddleware<TestCommand>, ISupportMediatorPriority
     {
         public int MediatorPriority { get; init; }
         public List<string> ExecutionLog { get; }
@@ -66,12 +66,12 @@ public class CommandHandlerWrapperTests
         }
     }
 
-    private class NonPrioritizedItem
+    private sealed class NonPrioritizedItem
     {
         public int Id { get; init; }
     }
 
-    private class PrioritizedItem : ISupportMediatorPriority
+    private sealed class PrioritizedItem : ISupportMediatorPriority
     {
         public int Id { get; init; }
         public int MediatorPriority { get; init; }
@@ -213,7 +213,7 @@ public class CommandHandlerWrapperTests
         Assert.Equal(1, executionOrder[2]);
     }
 
-    private class TrackingHandler(List<int> executionOrder, int handlerId)
+    private sealed class TrackingHandler(List<int> executionOrder, int handlerId)
         : ICommandHandler<TestCommand>, ISupportMediatorPriority
     {
         public int MediatorPriority { get; init; }
@@ -401,7 +401,7 @@ public class CommandHandlerWrapperTests
         Assert.Equal("After-2", executionLog[4]);
     }
 
-    private class LoggingHandler(List<string> executionLog) : ICommandHandler<TestCommand>
+    private sealed class LoggingHandler(List<string> executionLog) : ICommandHandler<TestCommand>
     {
         public ValueTask HandleAsync(TestCommand command, CancellationToken cancellationToken)
         {
@@ -546,7 +546,7 @@ public class CommandHandlerWrapperTests
         Assert.Equal(-1, executionOrder[5]);
     }
 
-    private class TrackingMiddleware(List<int> executionOrder, int middlewareId)
+    private sealed class TrackingMiddleware(List<int> executionOrder, int middlewareId)
         : ICommandMiddleware<TestCommand>, ISupportMediatorPriority
     {
         public int MediatorPriority { get; init; }
@@ -587,7 +587,7 @@ public class CommandHandlerWrapperTests
         Assert.False(handlerCalled);
     }
 
-    private class ShortCircuitMiddleware : ICommandMiddleware<TestCommand>
+    private sealed class ShortCircuitMiddleware : ICommandMiddleware<TestCommand>
     {
         public ValueTask HandleAsync(
             TestCommand command,

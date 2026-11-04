@@ -37,18 +37,18 @@ public class CommandResponseHandlerWrapperTests
         public int Input { get; init; }
     }
 
-    private class NonPrioritizedItem
+    private sealed class NonPrioritizedItem
     {
         public int Id { get; init; }
     }
 
-    private class PrioritizedItem : ISupportMediatorPriority
+    private sealed class PrioritizedItem : ISupportMediatorPriority
     {
         public int Id { get; init; }
         public int MediatorPriority { get; init; }
     }
 
-    private class PrioritizedHandler : ICommandResponseHandler<TestCommand, string>, ISupportMediatorPriority
+    private sealed class PrioritizedHandler : ICommandResponseHandler<TestCommand, string>, ISupportMediatorPriority
     {
         public int MediatorPriority { get; init; }
         public int HandlerId { get; init; }
@@ -62,7 +62,7 @@ public class CommandResponseHandlerWrapperTests
         }
     }
 
-    private class PrioritizedMiddleware(List<string> executionLog)
+    private sealed class PrioritizedMiddleware(List<string> executionLog)
         : ICommandResponseMiddleware<TestCommand, string>, ISupportMediatorPriority
     {
         public int MediatorPriority { get; init; }
@@ -80,7 +80,7 @@ public class CommandResponseHandlerWrapperTests
         }
     }
 
-    private class TrackingMiddleware(List<int> executionOrder, int middlewareId)
+    private sealed class TrackingMiddleware(List<int> executionOrder, int middlewareId)
         : ICommandResponseMiddleware<TestCommand, string>, ISupportMediatorPriority
     {
         public int MediatorPriority { get; init; }
@@ -97,7 +97,7 @@ public class CommandResponseHandlerWrapperTests
         }
     }
 
-    private class LoggingHandler(List<string> executionLog, string response)
+    private sealed class LoggingHandler(List<string> executionLog, string response)
         : ICommandResponseHandler<TestCommand, string>
     {
         public ValueTask<string> HandleAsync(TestCommand command, CancellationToken cancellationToken)
@@ -107,7 +107,7 @@ public class CommandResponseHandlerWrapperTests
         }
     }
 
-    private class ShortCircuitMiddleware(string response)
+    private sealed class ShortCircuitMiddleware(string response)
         : ICommandResponseMiddleware<TestCommand, string>, ISupportMediatorPriority
     {
         public int MediatorPriority { get; init; }
@@ -121,7 +121,7 @@ public class CommandResponseHandlerWrapperTests
         }
     }
 
-    private class ResponseModifyingMiddleware(string prefix, string suffix)
+    private sealed class ResponseModifyingMiddleware(string prefix, string suffix)
         : ICommandResponseMiddleware<TestCommand, string>, ISupportMediatorPriority
     {
         public int MediatorPriority { get; init; }
@@ -256,7 +256,7 @@ public class CommandResponseHandlerWrapperTests
             .Setup(x => x.HandleAsync(It.IsAny<TestCommand>(), It.IsAny<CommandResponseMiddlewareDelegate<string>>(), It.IsAny<CancellationToken>()))
             .Callback<TestCommand, CommandResponseMiddlewareDelegate<string>, CancellationToken>(
                 (cmd, _, _) => receivedCommand = cmd)
-            .Returns(ValueTask.FromResult("result"))
+            .ReturnsAsync("result")
             .Verifiable();
 
         var factory = CommandResponseHandlerWrapper<TestCommand, string>.WrapMiddleware(mockMiddleware.Object);
@@ -281,7 +281,7 @@ public class CommandResponseHandlerWrapperTests
             .Setup(x => x.HandleAsync(It.IsAny<TestCommand>(), It.IsAny<CommandResponseMiddlewareDelegate<string>>(), It.IsAny<CancellationToken>()))
             .Callback<TestCommand, CommandResponseMiddlewareDelegate<string>, CancellationToken>(
                 (_, _, token) => receivedToken = token)
-            .Returns(ValueTask.FromResult("result"))
+            .ReturnsAsync("result")
             .Verifiable();
 
         var factory = CommandResponseHandlerWrapper<TestCommand, string>.WrapMiddleware(mockMiddleware.Object);

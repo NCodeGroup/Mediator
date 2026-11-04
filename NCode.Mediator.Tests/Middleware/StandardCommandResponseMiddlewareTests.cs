@@ -38,18 +38,18 @@ public class StandardCommandResponseMiddlewareTests
         public int Input { get; init; }
     }
 
-    private class NonPrioritizedItem
+    private sealed class NonPrioritizedItem
     {
         public int Id { get; init; }
     }
 
-    private class PrioritizedItem : ISupportMediatorPriority
+    private sealed class PrioritizedItem : ISupportMediatorPriority
     {
         public int Id { get; init; }
         public int MediatorPriority { get; init; }
     }
 
-    private class TrackingPreProcessor(List<int> executionOrder, int processorId)
+    private sealed class TrackingPreProcessor(List<int> executionOrder, int processorId)
         : ICommandPreProcessor<TestCommand>, ISupportMediatorPriority
     {
         public int MediatorPriority { get; init; }
@@ -61,7 +61,7 @@ public class StandardCommandResponseMiddlewareTests
         }
     }
 
-    private class TrackingPostProcessor(List<int> executionOrder, int processorId)
+    private sealed class TrackingPostProcessor(List<int> executionOrder, int processorId)
         : ICommandResponsePostProcessor<TestCommand, string>, ISupportMediatorPriority
     {
         public int MediatorPriority { get; init; }
@@ -75,7 +75,7 @@ public class StandardCommandResponseMiddlewareTests
         }
     }
 
-    private class ThrowingPreProcessor(Exception exception) : ICommandPreProcessor<TestCommand>
+    private sealed class ThrowingPreProcessor(Exception exception) : ICommandPreProcessor<TestCommand>
     {
         public ValueTask PreProcessAsync(TestCommand command, CancellationToken cancellationToken)
         {
@@ -83,7 +83,7 @@ public class StandardCommandResponseMiddlewareTests
         }
     }
 
-    private class ThrowingPostProcessor(Exception exception) : ICommandResponsePostProcessor<TestCommand, string>
+    private sealed class ThrowingPostProcessor(Exception exception) : ICommandResponsePostProcessor<TestCommand, string>
     {
         public ValueTask PostProcessAsync(TestCommand command, string response, CancellationToken cancellationToken)
         {
